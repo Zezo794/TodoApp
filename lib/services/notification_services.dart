@@ -114,6 +114,7 @@ class NotifyHelper {
     scheduledDate = afterRemind(remind, scheduledDate);
 
     print('scheduledDate=  $scheduledDate');
+    print('now $now');
     if (scheduledDate.isBefore(now)) {
       print('iam in');
       if(repeat=='Daily'){
@@ -167,6 +168,16 @@ class NotifyHelper {
           sound: true,
         );
   }
+
+  void requestAndroidPermissions() {
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestPermission(
+
+    );
+  }
+
 
   Future<void> _configureLocalTimeZone() async {
     tz.initializeTimeZones();

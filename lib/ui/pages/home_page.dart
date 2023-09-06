@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     notifyHelper = NotifyHelper();
     notifyHelper.initializeNotification();
     notifyHelper.requestIOSPermissions();
+    notifyHelper.requestAndroidPermissions();
     taskController.getTask();
   }
 
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         leading: IconButton(
           onPressed: () {
             ThemeServices().switchTheme();
-            notifyHelper.displayNotification(title: 'lol', body: 'lol');
+
           },
           icon: Icon(
             Icons.sunny,

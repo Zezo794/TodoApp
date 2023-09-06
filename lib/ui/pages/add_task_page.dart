@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/models/task.dart';
+import 'package:todo/ui/pages/home_page.dart';
 import 'package:todo/ui/widgets/input_field.dart';
 
 import '../../controllers/task_controller.dart';
@@ -297,7 +298,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
     if (titleController.text.isNotEmpty && noteController.text.isNotEmpty) {
       addTasktoDb();
       await taskController.getTask();
-      Get.back();
+      Get.to(HomePage());
     } else if (titleController.text.isEmpty || noteController.text.isEmpty) {
       Get.snackbar('required', 'title or note shoudn\'t be empty ',
           snackPosition: SnackPosition.BOTTOM,
