@@ -24,7 +24,7 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   flutter_svg: ^2.0.7
   rxdart: ^0.27.7
-
+  workmanager: ^0.5.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

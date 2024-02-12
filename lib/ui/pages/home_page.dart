@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/controllers/task_controller.dart';
 import 'package:todo/ui/widgets/task_tile.dart';
+import 'package:workmanager/workmanager.dart';
 
 import '../../models/task.dart';
 import '../../services/notification_services.dart';
@@ -38,6 +39,7 @@ class _HomePageState extends State<HomePage> {
     notifyHelper.requestIOSPermissions();
     notifyHelper.requestAndroidPermissions();
     taskController.getTask();
+
   }
 
   @override
@@ -111,12 +113,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          MyButton(
-              ontap: () {
-                Get.to(() => AddTaskPage());
-                taskController.getTask();
-              },
-              label: '+ Add Task'),
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: MyButton(
+                ontap: () {
+                  Get.to(() => AddTaskPage());
+                  taskController.getTask();
+                },
+                label: '+ Add Task'),
+          ),
         ],
       ),
     );
@@ -175,6 +182,8 @@ class _HomePageState extends State<HomePage> {
               ) {
                 DateTime parsedTime =
                     DateFormat('hh:mm a').parse(task.startTime!);
+
+
                 notifyHelper.scheduledNotification(
                   parsedTime.hour,
                   parsedTime.minute,
