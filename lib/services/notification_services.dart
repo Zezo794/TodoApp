@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:workmanager/workmanager.dart';
 
 import '/models/task.dart';
 import '/ui/pages/notification_screen.dart';
@@ -100,6 +101,24 @@ class NotifyHelper {
       payload: '${task.title}|${task.note}|${task.startTime}|',
     );
   }
+
+  void scheduleBackgroundNotification(int hour, int minutes, Task task) {
+    final inputData = <String, dynamic>{
+      'hour': hour,
+      'minutes': minutes,
+      'taskId': task.id,
+    };
+
+    Workmanager().registerOneOffTask(
+      'background_notification_task_${task.id}',
+      'background_notification_task',
+      inputData: inputData,
+    );
+  }
+
+
+
+
 
   tz.TZDateTime _nextInstanceOfTenAM(int hour, int minutes , int remind , String repeat , String date) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
